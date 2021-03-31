@@ -68,19 +68,19 @@ test.functions[[4]] <- list(
 test.functions[[5]] <- list(
   name = "tripod",
   f = function( x ) {
-    return( (x[2]>=0) + (1+(x[1]>=0)) + abs( x[1] +50*(x[2]>=0)*(1-2*(x[1]>=0)) ) + abs(x[2]+50*(1-2*(x[2]>=0))) )
+    return( (x[2]>=0)*(1+(x[1]>=0)) + abs( x[1] +50*(x[2]>=0)*(1-2*(x[1]>=0)) ) + abs(x[2]+50*(x[1]>=0)*(1-2*(x[2]>=0))) )
   },
   lower = c(-100,-100),
   upper = c(100,100),
   x.star = c(0,-50),
-  y.star = 2
+  y.star = 0
 )
 
 
 test.functions[[6]] <- list(
   name = "qing",
   f = function( x ) {
-    return( sum(x^2 - 1:2) )
+    return( sum((x^2 - 1:2)^2) )
   },
   lower = c(-500,-500),
   upper = c(500,500),
@@ -104,7 +104,7 @@ test.functions[[7]] <- list(
 test.functions[[8]] <- list(
   name = "ursem_waves",
   f = function( x ) {
-    return( -0.9*x[1]^2 + (x[2]^2-4.5*x[2]^2)*x[1]*x[2] + 4.7*cos(2*x[1]-(x[2]^2)*(2+x[1]))*sin(2*pi*x[1]) )
+    return( -0.9*x[1]^2 + (x[2]^2-4.5*x[2]^2)*x[1]*x[2] + 4.7*cos(3*x[1]-(x[2]^2)*(2+x[1]))*sin(2.5*pi*x[1]) )
   },
   lower = c(-0.9,-1.2),
   upper = c(1.2,1.2),
