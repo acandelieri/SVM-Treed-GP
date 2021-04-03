@@ -1,13 +1,15 @@
 rm(list=ls()); graphics.off(); cat("\014")
 
 source("test_functions.R")
-kernels <- c("gauss","exp","powexp","matern3_2","matern5_2")
+# kernels <- c("gauss","exp","powexp","matern3_2","matern5_2")
+kernels <- "matern3_2"
 
 avg.sd <- T
 
 par(mfrow=c(2,3))
 
-for( tf in 1:length(test.functions) ) {
+# for( tf in 1:length(test.functions) ) {
+for( tf in c(1:5,8) ) {
   
   files <- list.files( path="results", pattern=test.functions[[tf]]$name, include.dirs=F )
   
@@ -90,15 +92,15 @@ for( tf in 1:length(test.functions) ) {
         lines( 0:(length(bo.med)-1), bo.med, col="orange", lwd=3 )
       }
     }
-    abline( h=1, lty=2, lwd=2, col="red" )
+    #abline( h=1, lty=2, lwd=2, col="red" )
   }
   
   #abline( h=1, lty=2, lwd=2, col="red" )
-  plot.new()
-  legend( "topleft", legend=c("linSVMTGP","nolinSVMTGP","GP"),
-          col=c("blue","green3","orange"), lwd=3, cex=1.5, bty="n")
-  # legend( "top", legend=c("linSVMTGP","nolinSVMTGP","GP"),
-  #         col=c("blue","green3","orange"), lwd=3, cex=1.5, horiz=T, bty="n")
+  #plot.new()
+  #legend( "topleft", legend=c("linSVMTGP","nolinSVMTGP","GP"),
+  #        col=c("blue","green3","orange"), lwd=3, cex=1.5, bty="n")
+  legend( "top", legend=c("linSVMTGP","nolinSVMTGP","GP"),
+         col=c("blue","green3","orange"), lwd=3, cex=1.5, horiz=T, bty="n")
 }
 
 par(mfrow=c(1,1))

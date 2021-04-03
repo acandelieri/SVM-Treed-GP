@@ -68,7 +68,7 @@ test.functions[[4]] <- list(
 test.functions[[5]] <- list(
   name = "tripod",
   f = function( x ) {
-    return( (x[2]>=0)*(1+(x[1]>=0)) + abs( x[1] +50*(x[2]>=0)*(1-2*(x[1]>=0)) ) + abs(x[2]+50*(x[1]>=0)*(1-2*(x[2]>=0))) )
+    return( (x[2]>=0)*(1+(x[1]>=0)) + abs( x[1] +50*(x[2]>=0)*(1-2*(x[1]>=0)) ) + abs( x[2] +50*(1-2*(x[2]>=0))) )
   },
   lower = c(-100,-100),
   upper = c(100,100),
