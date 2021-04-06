@@ -1,15 +1,15 @@
 rm(list=ls()); graphics.off(); cat("\014")
 
 source("test_functions.R")
-# kernels <- c("gauss","exp","powexp","matern3_2","matern5_2")
-kernels <- "matern3_2"
+kernels <- c("gauss")#,"exp","powexp","matern3_2","matern5_2")
 
 avg.sd <- T
 
-par(mfrow=c(2,3))
+par(mfrow=c(3,3))
+par(mar=c(4.1,3.1,3.1,1.1))
 
-# for( tf in 1:length(test.functions) ) {
-for( tf in c(1:5,8) ) {
+for( tf in 1:length(test.functions) ) {
+#for( tf in c(1:5,8) ) {
   
   files <- list.files( path="results", pattern=test.functions[[tf]]$name, include.dirs=F )
   
@@ -44,9 +44,13 @@ for( tf in c(1:5,8) ) {
         nl.avg <- apply(bs.nl,2,mean); nl.sd <- apply(bs.nl,2,sd)
         bo.avg <- apply(bs.bo,2,mean); bo.sd <- apply(bs.bo,2,sd)
         
-        plot( lin.avg, type="l", col=NA, main=paste0(test.functions[[tf]]$name,"\nGP's kernel:",kern), ylim=c(0,1.2),
+        # plot( lin.avg, type="l", col=NA, main=paste0(test.functions[[tf]]$name,"\nGP's kernel:",kern), ylim=c(0,1.2),
+        #       cex.axis=1.5, cex.lab=1.5, cex.main=1.5, xlab="BO iterations", ylab="Gap metric")
+        
+        plot( lin.avg, type="l", col=NA, main=test.functions[[tf]]$name, ylim=c(0,1),
               cex.axis=1.5, cex.lab=1.5, cex.main=1.5, xlab="BO iterations", ylab="Gap metric")
-        dw <- lin.avg-lin.sd; up <- lin.avg+lin.sd
+
+                dw <- lin.avg-lin.sd; up <- lin.avg+lin.sd
         dw[which(dw<0)] <- 0; up[which(up>1)] <- 1
         polygon( c(0:(length(lin.avg)-1),(length(lin.avg)-1):0), 
                  c(dw,rev(up)),
@@ -92,15 +96,20 @@ for( tf in c(1:5,8) ) {
         lines( 0:(length(bo.med)-1), bo.med, col="orange", lwd=3 )
       }
     }
-    #abline( h=1, lty=2, lwd=2, col="red" )
+    # abline( h=1, lty=2, lwd=2, col="red" )
   }
   
-  #abline( h=1, lty=2, lwd=2, col="red" )
-  #plot.new()
-  #legend( "topleft", legend=c("linSVMTGP","nolinSVMTGP","GP"),
-  #        col=c("blue","green3","orange"), lwd=3, cex=1.5, bty="n")
-  legend( "top", legend=c("linSVMTGP","nolinSVMTGP","GP"),
-         col=c("blue","green3","orange"), lwd=3, cex=1.5, horiz=T, bty="n")
+  # abline( h=1, lty=2, lwd=2, col="red" )
+  # plot.new()
+  # legend( "topleft", legend=c("linSVMTGP","nolinSVMTGP","GP"),
+  #         col=c("blue","green3","orange"), lwd=3, cex=1.5, bty="n")
+  # legend( "top", legend=c("linSVMTGP","nolinSVMTGP","GP"),
+  #        col=c("blue","green3","orange"), lwd=3, cex=1.5, horiz=T, bty="n")
 }
 
+plot.new()
+legend( "topleft", legend=c("linSVMTGP","nolinSVMTGP","GP"),
+        col=c("blue","green3","orange"), lwd=3, cex=1.5, bty="n")
+
+par(mar=c(5.1,4.1,4.1,2.1))
 par(mfrow=c(1,1))
