@@ -116,11 +116,13 @@ for( tf in tfs ) {
           }  
         }
         
-        TreedGP <- btgp( X.tgp, y.tgp, corr="matern", nu=2, verb=0 )
+        #TreedGP <- btgp( X.tgp, y.tgp, corr="matern", nu=2, verb=0 )
+        TreedGP <- btgp( X.tgp, y.tgp, verb=0 )
         x_ <- next.query.tgp( TreedGP, test.functions[[tf]]$lower, test.functions[[tf]]$upper,
                           N=length(test.functions[[tf]]$lower)*10L, eps=10^-8, M=2000L, rho=0.5 )
         
         X.tgp <- rbind(X.tgp,x_$par)
+        colnames(X.tgp) <- NULL
         y.tgp <- c(y.tgp,test.functions[[tf]]$f(x_$par))
         
       }
