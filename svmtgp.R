@@ -206,7 +206,7 @@ plot2D.mean <- function( svmtgp, lower, upper, n.grid = 30 ) {
   Ys.m <- matrix( tmp$mean, nrow=n.grid, byrow=T )
   Ys.sd <- matrix( tmp$sd, nrow=n.grid, byrow=T )
   
-  image2D( x=seq(lower[1],upper[1],length.out=n.grid), y=seq(lower[2],upper[2],length.out=n.grid), z=Ys.m, colkey=F, xlab="x1", ylab="x2", col=cm.colors(100), cex.axis=1.3, cex.lab=1.3 )
+  image2D( x=seq(lower[1],upper[1],length.out=n.grid), y=seq(lower[2],upper[2],length.out=n.grid), z=Ys.m, colkey=F, xlab="x1", ylab="x2", col=cm.colors(100), cex.axis=1.5, cex.lab=1.5 )
   contour2D( x=seq(lower[1],upper[1],length.out=n.grid), y=seq(lower[2],upper[2],length.out=n.grid), z=Ys.m,
              add=T, col="grey", nlevels=30 )
 

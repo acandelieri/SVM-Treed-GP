@@ -47,24 +47,26 @@ for( tf in 1:length(test.functions) ) {
         # plot( lin.avg, type="l", col=NA, main=paste0(test.functions[[tf]]$name,"\nGP's kernel:",kern), ylim=c(0,1.2),
         #       cex.axis=1.5, cex.lab=1.5, cex.main=1.5, xlab="BO iterations", ylab="Gap metric")
         
-        plot( lin.avg, type="l", col=NA, main=test.functions[[tf]]$name, ylim=c(0,1),
+        plot( lin.avg, type="l", col=NA,
+              main=test.functions[[tf]]$name,
+              ylim=c(0,1),
               cex.axis=1.5, cex.lab=1.5, cex.main=1.5, xlab="BO iterations", ylab="Gap metric")
 
-                dw <- lin.avg-lin.sd; up <- lin.avg+lin.sd
-        dw[which(dw<0)] <- 0; up[which(up>1)] <- 1
-        polygon( c(0:(length(lin.avg)-1),(length(lin.avg)-1):0), 
-                 c(dw,rev(up)),
-                 col=adjustcolor("blue",alpha.f=0.1), border=NA )
-        dw <- nl.avg-nl.sd; up <- nl.avg+nl.sd
-        dw[which(dw<0)] <- 0; up[which(up>1)] <- 1
-        polygon( c(0:(length(nl.avg)-1),(length(nl.avg)-1):0), 
-                 c(dw,rev(up)),
-                 col=adjustcolor("green3",alpha.f=0.1), border=NA )
-        dw <- bo.avg-bo.sd; up <- bo.avg+bo.sd
-        dw[which(dw<0)] <- 0; up[which(up>1)] <- 1
-        polygon( c(0:(length(bo.avg)-1),(length(bo.avg)-1):0), 
-                 c(dw,rev(up)),
-                 col=adjustcolor("orange",alpha.f=0.1), border=NA )
+        # dw <- lin.avg-lin.sd; up <- lin.avg+lin.sd
+        # dw[which(dw<0)] <- 0; up[which(up>1)] <- 1
+        # polygon( c(0:(length(lin.avg)-1),(length(lin.avg)-1):0), 
+        #          c(dw,rev(up)),
+        #          col=adjustcolor("blue",alpha.f=0.1), border=NA )
+        # dw <- nl.avg-nl.sd; up <- nl.avg+nl.sd
+        # dw[which(dw<0)] <- 0; up[which(up>1)] <- 1
+        # polygon( c(0:(length(nl.avg)-1),(length(nl.avg)-1):0), 
+        #          c(dw,rev(up)),
+        #          col=adjustcolor("green3",alpha.f=0.1), border=NA )
+        # dw <- bo.avg-bo.sd; up <- bo.avg+bo.sd
+        # dw[which(dw<0)] <- 0; up[which(up>1)] <- 1
+        # polygon( c(0:(length(bo.avg)-1),(length(bo.avg)-1):0), 
+        #          c(dw,rev(up)),
+        #          col=adjustcolor("orange",alpha.f=0.1), border=NA )
         lines( 0:(length(lin.avg)-1), lin.avg, col="blue", lwd=3 )
         lines( 0:(length(nl.avg)-1), nl.avg, col="green3", lwd=3 )
         lines( 0:(length(bo.avg)-1), bo.avg, col="orange", lwd=3 ) 
@@ -105,6 +107,14 @@ for( tf in 1:length(test.functions) ) {
   #         col=c("blue","green3","orange"), lwd=3, cex=1.5, bty="n")
   # legend( "top", legend=c("linSVMTGP","nolinSVMTGP","GP"),
   #        col=c("blue","green3","orange"), lwd=3, cex=1.5, horiz=T, bty="n")
+
+  # if( test.functions[[tf]]$name=="rosenbrock_modified" ) {
+  #   legend( "topright", legend=c("linSVMTGP","nolinSVMTGP","GP"),
+  #           col=c("blue","green3","orange"), lwd=3, cex=1.5 )
+  # } else {
+  #   legend( "bottomright", legend=c("linSVMTGP","nolinSVMTGP","GP"),
+  #           col=c("blue","green3","orange"), lwd=3, cex=1.5 )
+  # }
 }
 
 plot.new()

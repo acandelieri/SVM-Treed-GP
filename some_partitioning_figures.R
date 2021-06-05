@@ -25,8 +25,8 @@ for( i in iters.chart ) {
   linSVMTGP <- svmtgp( X, res$y[ixs], thr=ncol(X), linear=T, covtype=kern )
   # plot2D.labels( linSVMTGP, lower=test.functions[[tf]]$lower, upper=test.functions[[tf]]$upper, n.grid=n.grid )
   plot2D.mean( linSVMTGP, lower=test.functions[[tf]]$lower, upper=test.functions[[tf]]$upper, n.grid=n.grid )
-  title( paste0((i+10)," function evaluations" ))
-  points2D( X[,1], X[,2], pch=19, col="blue", add=T )
+  title( paste0((i+10)," function evaluations" ), cex.main=1.5 )
+  points2D( X[,1], X[,2], pch=20, col="blue", add=T )
   points2D( test.functions[[tf]]$x.star[1], test.functions[[tf]]$x.star[2], pch=8, lwd=2, col="red", add=T )
 }
 
@@ -51,8 +51,8 @@ for( i in iters.chart ) {
   nolinSVMTGP <- svmtgp( X, res$y[ixs], thr=ncol(X), linear=F, covtype=kern )
   # plot2D.labels( nolinSVMTGP, lower=test.functions[[tf]]$lower, upper=test.functions[[tf]]$upper, n.grid=n.grid )
   plot2D.mean( nolinSVMTGP, lower=test.functions[[tf]]$lower, upper=test.functions[[tf]]$upper, n.grid=n.grid )
-  title( paste0((i+10)," function evaluations" ))
-  points2D( X[,1], X[,2], pch=19, col="blue", add=T )
+  title( paste0((i+10)," function evaluations" ), cex.main=1.5 )
+  points2D( X[,1], X[,2], pch=20, col="blue", add=T )
   points2D( test.functions[[tf]]$x.star[1], test.functions[[tf]]$x.star[2], pch=8, lwd=2, col="red", add=T )
 }
 
