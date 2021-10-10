@@ -5,8 +5,9 @@ kernels <- c("gauss")#,"exp","powexp","matern3_2","matern5_2")
 
 avg.sd <- T
 
-par(mfrow=c(3,3))
-par(mar=c(4.1,3.1,3.1,1.1))
+# par(mfrow=c(3,3))
+# par(mar=c(4.1,3.1,3.1,1.1))
+par(mar=c(4.1,4.6,2.1,1.1))
 
 for( tf in 1:length(test.functions) ) {
 #for( tf in c(1:5,8) ) {
@@ -48,9 +49,9 @@ for( tf in 1:length(test.functions) ) {
         #       cex.axis=1.5, cex.lab=1.5, cex.main=1.5, xlab="BO iterations", ylab="Gap metric")
         
         plot( lin.avg, type="l", col=NA,
-              main=test.functions[[tf]]$name,
+              #main=test.functions[[tf]]$name,
               ylim=c(0,1),
-              cex.axis=1.5, cex.lab=1.5, cex.main=1.5, xlab="BO iterations", ylab="Gap metric")
+              cex.axis=2, cex.lab=2, cex.main=2, xlab="BO iterations", ylab="Gap metric")
 
         # dw <- lin.avg-lin.sd; up <- lin.avg+lin.sd
         # dw[which(dw<0)] <- 0; up[which(up>1)] <- 1
@@ -76,7 +77,7 @@ for( tf in 1:length(test.functions) ) {
         bo.med <- apply(bs.bo,2,median); bo.min <- apply(bs.bo,2,min); bo.max <- apply(bs.bo,2,max)
         
         plot( lin.med, type="l", col=NA, main=paste0(test.functions[[tf]]$name,"\nGP's kernel:",kern), ylim=c(0,1.2),
-              cex.axis=1.5, cex.lab=1.5, cex.main=1.5, xlab="BO iterations", ylab="Gap metric")
+              cex.axis=2, cex.lab=2, cex.main=2, xlab="BO iterations", ylab="Gap metric")
         
         # lines( 0:(length(lin.min)-1), lin.min, col="blue", lwd=2, lty=3 )
         # lines( 0:(length(nl.min)-1), nl.min, col="green3", lwd=2, lty=3 )
@@ -108,18 +109,18 @@ for( tf in 1:length(test.functions) ) {
   # legend( "top", legend=c("linSVMTGP","nolinSVMTGP","GP"),
   #        col=c("blue","green3","orange"), lwd=3, cex=1.5, horiz=T, bty="n")
 
-  # if( test.functions[[tf]]$name=="rosenbrock_modified" ) {
-  #   legend( "topright", legend=c("linSVMTGP","nolinSVMTGP","GP"),
-  #           col=c("blue","green3","orange"), lwd=3, cex=1.5 )
-  # } else {
-  #   legend( "bottomright", legend=c("linSVMTGP","nolinSVMTGP","GP"),
-  #           col=c("blue","green3","orange"), lwd=3, cex=1.5 )
-  # }
+  if( test.functions[[tf]]$name=="rosenbrock_modified" ) {
+    legend( "topright", legend=c("linSVMTGP","nolinSVMTGP","GP"),
+            col=c("blue","green3","orange"), lwd=3, cex=2 )
+  } else {
+    legend( "bottomright", legend=c("linSVMTGP","nolinSVMTGP","GP"),
+            col=c("blue","green3","orange"), lwd=3, cex=2 )
+  }
 }
 
-plot.new()
-legend( "topleft", legend=c("linSVMTGP","nolinSVMTGP","GP"),
-        col=c("blue","green3","orange"), lwd=3, cex=1.5, bty="n")
+# plot.new()
+# legend( "topleft", legend=c("linSVMTGP","nolinSVMTGP","GP"),
+#         col=c("blue","green3","orange"), lwd=3, cex=1.5, bty="n")
 
 par(mar=c(5.1,4.1,4.1,2.1))
 par(mfrow=c(1,1))

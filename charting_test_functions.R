@@ -22,7 +22,8 @@ for( tf in 1:length(test.functions) ) {
   persp3D( x=sort(unique(Xs[,1])), y=sort(unique(Xs[,2])),
            z=matrix(ys,nrow=n.grid,byrow=T), col=cm.colors(100), colkey=F,
            xlab="x1", ylab="x2", zlab="f(x)", cex.axis=1.5,
-           phi=40, theta=40, 
+           phi=40, theta=40, cex.lab=1.7, cex.main=1.7,
            main=test.functions[[tf]]$name, border="grey")
+  
   
 }

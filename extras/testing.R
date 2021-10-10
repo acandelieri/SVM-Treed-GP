@@ -45,10 +45,13 @@ leaves <- matrix( tmp$leaf.id, nrow=n.grid, byrow=T )
 
 
 par( mfrow=c(1,2) )
+curr.mar <- par("mar")
+par(mar=c(4.1,4.6,2.1,1.1))
 plot2D.labels( model, c(0,0), c(1,1), n.grid=n.grid )
 points2D( X[,1], X[,2], pch=19, col="blue", add=T )
 plot2D.mean( model, c(0,0), c(1,1), n.grid=n.grid )
 points2D( X[,1], X[,2], pch=19, col="blue", add=T )
+par(mar=curr.mar)
 par( mfrow=c(1,1) )
 
 # par( mfrow=c(2,2) )
@@ -76,6 +79,10 @@ Ys.m <- matrix( tmp$mean, nrow=n.grid, byrow=T )
 Ys.sd <- matrix( tmp$sd, nrow=n.grid, byrow=T )
 leaves <- matrix( tmp$leaf.id, nrow=n.grid, byrow=T )
 
-persp3D( x=seq(0,1,length.out=n.grid), y=seq(0,1,length.out=n.grid), z=Ys.m, border="darkgrey", 
-       theta=60, phi=30, colkey=F, xlab="x1", ylab="x2", zlab="f(x)", col=cm.colors(100) )
 
+fig <- persp3D( x=seq(0,1,length.out=n.grid), y=seq(0,1,length.out=n.grid), z=Ys.m, border="darkgrey",
+                cex.axis=1.5,
+                theta=60, phi=30, colkey=F, xlab="", ylab="", zlab="", col=cm.colors(100) )
+text(trans3d(0.0,-0.2,2.0,fig), "f(x)", cex=2, col="black")
+text(trans3d(0.7,-0.2,0.0,fig), label= "x1", cex=2, col="black")
+text(trans3d(1.3,0.5,0.0,fig), label= "x2", cex=2, col="black", xpd=NA, pos=2)
